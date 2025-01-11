@@ -4,21 +4,19 @@ from django.conf import settings
 from django.http import JsonResponse
 
 # Load fuel prices from the CSV file
-fuel_prices = pd.read_csv("fuel_prices.csv")
+fuel_prices = pd.read_csv("fuel-prices-for-be-assessment.csv")
 
-# Initialize OpenRouteService client
+
 ors_client = openrouteservice.Client(key=settings.ORS_API_KEY)
 
 def get_route_with_stops(request):
-    # Get start and end locations from request parameters
-    start = request.GET.get("start")  # Example: "-122.4194,37.7749"
-    end = request.GET.get("end")      # Example: "-118.2437,34.0522"
+    start = request.GET.get("start")  # "-122.4194,37.7749"
+    end = request.GET.get("end")      # "-118.2437,34.0522"
 
     if not start or not end:
         return JsonResponse({"error": "Please provide start and end locations."}, status=400)
 
     try:
-        # Convert input strings to tuples
         start_coords = tuple(map(float, start.split(',')))
         end_coords = tuple(map(float, end.split(',')))
 

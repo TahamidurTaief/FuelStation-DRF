@@ -6,7 +6,7 @@ class Command(BaseCommand):
     help = 'Load fuel station data from CSV'
 
     def handle(self, *args, **kwargs):
-        with open('fuel_prices.csv', 'r') as file:
+        with open('fuel-prices-for-be-assessment.csv', 'r') as file:
             reader = csv.DictReader(file)
             for row in reader:
                 FuelStation.objects.create(

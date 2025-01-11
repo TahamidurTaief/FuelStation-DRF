@@ -9,3 +9,9 @@ class FuelStation(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.city}, {self.state}"
+
+
+
+# Developed by
+# Tahamidur Taief
+# full stack Python Developer.
